@@ -1871,11 +1871,6 @@ PrefabInstance:
       propertyPath: deathParticles
       value: 
       objectReference: {fileID: 1102696962}
-    - target: {fileID: 1581667083414093676, guid: f1d53ffbb8e18ad42b6f313b435f5088,
-        type: 3}
-      propertyPath: mainThrust
-      value: 40
-      objectReference: {fileID: 0}
     - target: {fileID: 1581667083414093678, guid: f1d53ffbb8e18ad42b6f313b435f5088,
         type: 3}
       propertyPath: m_LocalPosition.x

@@ -5,9 +5,17 @@ public class Rocket : MonoBehaviour {
 
     [SerializeField] float rcsThrust = 100f;
     [SerializeField] float mainThrust = 100f;
+
     [SerializeField] AudioClip mainEngine;
     [SerializeField] AudioClip success;
     [SerializeField] AudioClip death;
+
+
+    [SerializeField] ParticleSystem mainEngineParticles;
+    [SerializeField] ParticleSystem successParticles;
+    [SerializeField] ParticleSystem deathParticles;
+
+
 
     Rigidbody rigidBody;
     AudioSource audioSource;
@@ -40,25 +48,37 @@ public class Rocket : MonoBehaviour {
                 //do nothing 
                 break;
             case "Finish":
-                state = State.Transcending;
-                Invoke("LoadNextLevel", 1f);
+                StartSuccessSequence();
                 break;
-            default:
-                print("Hit something deadly");
-                state = State.Dying;
-                audioSource.PlayOneShot(death);
-                Invoke("LoadFirstLevel", 1f);
-                SceneManager.LoadScene(0);
+            case "Death":
+                StartDeathSequence();
                 break;
         }
     }
+
+    private void StartSuccessSequence() {
+        state = State.Transcending;
+        audioSource.Stop();
+        audioSource.PlayOneShot(success);
+        successParticles.Play();
+        Invoke("LoadNextLevel", 1f);
+    }
+
+    private void StartDeathSequence() {
+        state = State.Dying;
+        deathParticles.Play();
+        audioSource.Stop();
+        audioSource.PlayOneShot(death);
+        Invoke("LoadFirstLevel", 1f);
+    }
+
+
 
     private void LoadNextLevel() {
         SceneManager.LoadScene(1); //todo allow for more than 2 levels;
     }
 
-    private void LoadFirstLevel()
-    {
+    private void LoadFirstLevel() {
         SceneManager.LoadScene(0); 
     }
 
@@ -69,11 +89,13 @@ public class Rocket : MonoBehaviour {
         }
         else {
             audioSource.Stop();
+            //mainEngineParticles.Stop();
         }
     }
 
     private void ApplyThrust()
     {
+        mainEngineParticles.Play();
         rigidBody.AddRelativeForce(Vector3.up * mainThrust);
         if (!audioSource.isPlaying)
         {
