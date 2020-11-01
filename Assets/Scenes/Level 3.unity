@@ -561,6 +561,7 @@ GameObject:
   - component: {fileID: 597074856}
   - component: {fileID: 597074855}
   - component: {fileID: 597074854}
+  - component: {fileID: 597074858}
   m_Layer: 0
   m_Name: Obstacle (1)
   m_TagString: Death
@@ -646,6 +647,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 90}
+--- !u!114 &597074858
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 597074853}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4a7107be08c88404c95e9050ed215b8b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementVector: {x: 15, y: 0, z: 0}
+  movementFactor: 0
 --- !u!1001 &620901035
 PrefabInstance:
   m_ObjectHideFlags: 0
